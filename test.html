@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GGMarket - Votre Destination Gaming</title>
+  <style>
+    :root {
+      --primary-color: #000000;
+      --secondary-color: #1a1a1a;
+      --accent-color: #9c27b0; /* Violet semi-rose */
+      --text-color: #ffffff;
+      --gray-color: #888888;
+      --free-color: #9c27b0; /* Darkest violet */
+      --premium-color: #b52fd1; /* Medium violet */
+      --premium-plus-color: #ce37f2; /* Lightest violet */
+    }
+    
+    /* Global */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header */
+    header {
+      background-color: var(--primary-color);
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .logo {
+      font-size: 2rem;
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    nav ul li {
+      margin-left: 30px;
+    }
+    nav ul li a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: var(--accent-color);
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero-content {
+      max-width: 600px;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: var(--gray-color);
+    }
+    .btn {
+      display: inline-block;
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn:hover {
+      background-color: #7a1f98;
+      transform: translateY(-3px);
+    }
+    
+    /* Fournisseurs Section */
+    #fournisseurs {
+      padding: 60px 0;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-header h2 {
+      font-size: 2.8rem;
+      color: var(--accent-color);
+    }
+    .provider-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .provider-card {
+      background: linear-gradient(135deg, var(--free-color), var(--secondary-color));
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .provider-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3);
+    }
+    .provider-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      color: var(--text-color);
+    }
+    .provider-card p {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      color: var(--gray-color);
+    }
+    
+    /* FAQ Section */
+    #faq {
+      padding: 60px 0;
+    }
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background-color: var(--secondary-color);
+      margin-bottom: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      cursor: pointer;
+      padding: 15px;
+    }
+    .faq-answer {
+      padding: 0 15px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding: 15px;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--secondary-color);
+      color: var(--gray-color);
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 60px;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav ul li {
+        margin: 10px 0;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <h1 class="logo">GGMarket</h1>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#fournisseurs">Fournisseurs</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="accueil" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Bienvenue sur GGMarket</h1>
+        <p>GGMarket est une plateforme dédiée aux fournisseurs Discord de l'univers gaming. Découvrez nos produits et contactez directement les fournisseurs via Discord.</p>
+        <a href="shop.html" class="btn">Découvrir nos produits</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="fournisseurs">
+    <div class="container">
+      <div class="section-header">
+        <h2>Fournisseurs Discord</h2>
+      </div>
+      <div class="provider-grid">
+        <div class="provider-card">
+          <h3>GameTech</h3>
+          <p>Leader en périphériques gaming de qualité.</p>
+          <a href="https://discord.gg/" class="btn">Contacter</a>
+        </div>
+        <div class="provider-card">
+          <h3>PCMaster</h3>
+          <p>Composants haut de gamme pour performance optimale.</p>
+          <a href="https://discord.gg/" class="btn">Contacter</a>
+        </div>
+        <div class="provider-card">
+          <h3>E-Sports Gear</h3>
+          <p>Équipement pro pour gamers exigeants.</p>
+          <a href="https://discord.gg/" class="btn">Contacter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2>Foire aux Questions</h2>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">Quels modes de paiement acceptez-vous ?</div>
+          <div class="faq-answer">Nous acceptons uniquement les paiements via PayPal et Bitcoin.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Comment suivre ma commande ?</div>
+          <div class="faq-answer">Le suivi des commandes s'effectue directement via votre fournisseur.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Quels sont les délais de livraison ?</div>
+          <div class="faq-answer">Les délais de livraison varient selon chaque fournisseur.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 GGMarket. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ Toggle
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Become a Supplier - GGMarket</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #000000;
+      --secondary-color: #1a1a1a;
+      --accent-color: #9c27b0; /* Violet semi-rose */
+      --text-color: #ffffff;
+      --gray-color: #888888;
+      --free-color: #9c27b0; /* Darkest violet */
+      --premium-color: #b52fd1; /* Medium violet */
+      --premium-plus-color: #ce37f2; /* Lightest violet */
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+    nav {
+      background-color: var(--secondary-color);
+      padding: 20px 0;
+    }
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: var(--accent-color);
+    }
+    header {
+      padding: 100px 0;
+      text-align: center;
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+    header p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--gray-color);
+    }
+    .pricing-cards {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: -50px;
+    }
+    .card {
+      background-color: var(--secondary-color);
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    .card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--accent-color);
+    }
+    .card .price {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+    .card ul {
+      list-style: none;
+      margin: 20px 0;
+      padding: 0;
+    }
+    .card ul li {
+      margin-bottom: 10px;
+    }
+    .card .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .card .btn:hover {
+      background-color: #7a1f98;
+    }
+    /* Specific colors for each plan */
+    .card.free {
+      background: linear-gradient(135deg, var(--free-color), var(--secondary-color));
+    }
+    .card.premium {
+      background: linear-gradient(135deg, var(--premium-color), var(--secondary-color));
+    }
+    .card.premium-plus {
+      background: linear-gradient(135deg, var(--premium-plus-color), var(--secondary-color));
+    }
+    footer {
+      background-color: var(--secondary-color);
+      color: var(--gray-color);
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 100px;
+    }
+    @media (max-width: 768px) {
+      .pricing-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .card {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="index.html">Back to Home</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container">
+      <h1>Become a GGMarket Supplier</h1>
+      <p>Choose the plan that fits your business needs and start selling today!</p>
+    </div>
+  </header>
+  
+  <section class="pricing">
+    <div class="container">
+      <div class="pricing-cards">
+        <div class="card free">
+          <h3>Starter</h3>
+          <div class="price">$0</div>
+          <ul>
+            <li>10% commission on sales</li>
+            <li>Basic platform access</li>
+            <li>Standard support</li>
+          </ul>
+          <a href="#" class="btn">Get Started</a>
+        </div>
+        <div class="card premium">
+          <h3>Pro</h3>
+          <div class="price">$29.99</div>
+          <ul>
+            <li>5% commission on sales</li>
+            <li>Advanced analytics</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="#" class="btn">Choose Pro</a>
+        </div>
+        <div class="card premium-plus">
+          <h3>Enterprise</h3>
+          <div class="price">$99.99</div>
+          <ul>
+            <li>2% commission on sales</li>
+            <li>Custom integration</li>
+            <li>Dedicated account manager</li>
+          </ul>
+          <a href="#" class="btn">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 GGMarket. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
