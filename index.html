@@ -31,7 +31,7 @@
       padding: 0 20px;
     }
     
-    /* --- Partie haute inchangée --- */
+    /* Header & Navigation */
     header {
       background-color: var(--primary-color);
       padding: 20px 0;
@@ -52,45 +52,70 @@
       align-items: center;
       flex-wrap: wrap;
     }
-    nav ul {
+    /* Menu hamburger (affiché sur mobile) */
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    /* Navigation desktop */
+    nav ul.desktop-menu {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
     }
-    nav ul li {
+    nav ul.desktop-menu li {
       margin-left: 30px;
     }
-    nav ul li a {
+    nav ul.desktop-menu li a {
       color: var(--text-color);
       text-decoration: none;
       font-size: 1rem;
       transition: color 0.3s;
     }
-    nav ul li a:hover {
+    nav ul.desktop-menu li a:hover {
       color: var(--accent-color);
     }
+    /* Navigation mobile (cachée par défaut) */
+    nav ul.mobile-menu {
+      list-style: none;
+      display: none;
+      flex-direction: column;
+      width: 100%;
+    }
+    nav ul.mobile-menu li {
+      margin: 10px 0;
+      text-align: center;
+    }
+    nav ul.mobile-menu li a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+    nav ul.mobile-menu li a:hover {
+      color: var(--accent-color);
+    }
+    nav ul.mobile-menu.active {
+      display: flex;
+    }
+    
     main {
       margin-top: 80px;
     }
+    
+    /* Section Héro avec dégradé de la page plans */
     .hero {
-      background-image: url('hero-bg.jpg');
-      background-size: cover;
-      background-position: center;
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      /* Si vous souhaitez conserver un effet overlay, vous pouvez ajouter une opacité sur le dégradé */
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      overflow: hidden;
       text-align: center;
       padding: 0 20px;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 1;
     }
     .hero-content {
       position: relative;
@@ -136,9 +161,8 @@
       background-color: #7a1f98;
       transform: translateY(-3px);
     }
-    /* --- Fin de la partie haute --- */
     
-    /* Section Fournisseurs Discord – refaite de zéro */
+    /* Section Fournisseurs */
     #fournisseurs {
       padding: 60px 0;
     }
@@ -150,7 +174,6 @@
       font-size: 2.8rem;
       color: var(--accent-color);
     }
-    /* Grille de cartes fournisseurs */
     .provider-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -183,7 +206,7 @@
       font-size: 0.9rem;
     }
     
-    /* Section FAQ – refaite de zéro */
+    /* Section FAQ */
     #faq {
       padding: 60px 0;
     }
@@ -230,10 +253,10 @@
       margin-top: 8px;
     }
     .faq-item.active .faq-answer {
-      max-height: 500px; /* assez grand pour le contenu */
+      max-height: 500px;
     }
     
-    /* Pied de page – design moderne */
+    /* Pied de page */
     footer {
       background-color: #111;
       padding: 40px 0;
@@ -281,7 +304,7 @@
       font-size: 0.9rem;
     }
     
-    /* Bouton Scroll-to-Top (inchangé) */
+    /* Bouton Scroll-to-Top */
     #scroll-to-top {
       position: fixed;
       bottom: 20px;
@@ -303,14 +326,13 @@
       transform: scale(1.1);
     }
     
-    /* Adaptation pour petits écrans */
+    /* Adaptation Responsive */
     @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        align-items: center;
+      .menu-toggle {
+        display: block;
       }
-      nav ul li {
-        margin: 10px 0;
+      nav ul.desktop-menu {
+        display: none;
       }
       .hero {
         height: 70vh;
@@ -333,7 +355,6 @@
         text-align: center;
       }
     }
-    
     @media (max-width: 480px) {
       .hero h1 {
         font-size: 2rem;
@@ -341,28 +362,38 @@
       .hero p {
         font-size: 0.9rem;
       }
-      nav ul li a {
+      nav ul.mobile-menu li a {
         font-size: 0.9rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Haut de page inchangé -->
+  <!-- En-tête avec menu hamburger pour mobile -->
   <header>
     <div class="container">
       <nav>
         <h1 class="logo">GGMarket</h1>
-        <ul>
+        <div class="menu-toggle" id="mobile-menu-toggle">☰</div>
+        <!-- Menu mobile -->
+        <ul class="mobile-menu" id="mobile-menu">
           <li><a href="#accueil">Accueil</a></li>
           <li><a href="#fournisseurs">Fournisseurs</a></li>
+          <li><a href="products.html">Produits</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <!-- Menu desktop -->
+        <ul class="desktop-menu">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#fournisseurs">Fournisseurs</a></li>
+          <li><a href="products.html">Produits</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </nav>
     </div>
   </header>
   
-  <!-- Section Héro inchangée -->
+  <!-- Section Héro avec dégradé -->
   <section id="accueil" class="hero">
     <div class="container">
       <div class="hero-content">
@@ -376,7 +407,7 @@
     </div>
   </section>
   
-  <!-- Nouvelle Section Fournisseurs Discord -->
+  <!-- Section Fournisseurs Discord -->
   <section id="fournisseurs">
     <div class="container">
       <div class="section-header">
@@ -402,7 +433,7 @@
     </div>
   </section>
   
-  <!-- Nouvelle Section FAQ -->
+  <!-- Section FAQ -->
   <section id="faq">
     <div class="container">
       <div class="section-header">
@@ -469,18 +500,14 @@
   <div id="scroll-to-top">&#8679;</div>
   
   <script>
-    // Animation d'apparition des sections
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-    sections.forEach(section => observer.observe(section));
+    // Toggle du menu mobile
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
     
-    // FAQ - Toggle de chaque item
+    // Toggle de la FAQ
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
       item.addEventListener('click', () => {

@@ -11,9 +11,6 @@
       --accent-color: #9c27b0; /* Violet semi-rose */
       --text-color: #ffffff;
       --gray-color: #888888;
-      --free-color: #9c27b0; /* Darkest violet */
-      --premium-color: #b52fd1; /* Medium violet */
-      --premium-plus-color: #ce37f2; /* Lightest violet */
     }
     
     /* Global */
@@ -34,7 +31,7 @@
       padding: 0 20px;
     }
     
-    /* Header */
+    /* Header & Navigation */
     header {
       background-color: var(--primary-color);
       padding: 20px 0;
@@ -55,36 +52,90 @@
       align-items: center;
       flex-wrap: wrap;
     }
-    nav ul {
+    /* Menu hamburger (affiché sur mobile) */
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    /* Navigation desktop */
+    nav ul.desktop-menu {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
     }
-    nav ul li {
+    nav ul.desktop-menu li {
       margin-left: 30px;
     }
-    nav ul li a {
+    nav ul.desktop-menu li a {
       color: var(--text-color);
       text-decoration: none;
       font-size: 1rem;
       transition: color 0.3s;
     }
-    nav ul li a:hover {
+    nav ul.desktop-menu li a:hover {
       color: var(--accent-color);
     }
+    /* Navigation mobile (cachée par défaut) */
+    nav ul.mobile-menu {
+      list-style: none;
+      display: none;
+      flex-direction: column;
+      width: 100%;
+    }
+    nav ul.mobile-menu li {
+      margin: 10px 0;
+      text-align: center;
+    }
+    nav ul.mobile-menu li a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+    nav ul.mobile-menu li a:hover {
+      color: var(--accent-color);
+    }
+    nav ul.mobile-menu.active {
+      display: flex;
+    }
     
-    /* Hero Section */
+    main {
+      margin-top: 80px;
+    }
+    
+    /* Section Héro avec dégradé de la page plans */
     .hero {
       background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      /* Si vous souhaitez conserver un effet overlay, vous pouvez ajouter une opacité sur le dégradé */
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
       text-align: center;
       padding: 0 20px;
     }
     .hero-content {
+      position: relative;
+      z-index: 2;
       max-width: 600px;
+      margin: 0 auto;
+    }
+    .hero-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .site-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+      border: 3px solid var(--accent-color);
     }
     .hero h1 {
       font-size: 3.5rem;
@@ -111,15 +162,15 @@
       transform: translateY(-3px);
     }
     
-    /* Fournisseurs Section */
+    /* Section Fournisseurs */
     #fournisseurs {
       padding: 60px 0;
     }
-    .section-header {
+    #fournisseurs .section-header {
       text-align: center;
       margin-bottom: 40px;
     }
-    .section-header h2 {
+    #fournisseurs .section-header h2 {
       font-size: 2.8rem;
       color: var(--accent-color);
     }
@@ -129,8 +180,9 @@
       gap: 30px;
     }
     .provider-card {
-      background: linear-gradient(135deg, var(--free-color), var(--secondary-color));
+      background-color: var(--secondary-color);
       padding: 20px;
+      border: 1px solid #222;
       border-radius: 8px;
       text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
@@ -142,62 +194,154 @@
     .provider-card h3 {
       margin-bottom: 10px;
       font-size: 1.5rem;
-      color: var(--text-color);
+      color: var(--accent-color);
     }
     .provider-card p {
       font-size: 1rem;
       margin-bottom: 15px;
       color: var(--gray-color);
     }
+    .provider-card .btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
     
-    /* FAQ Section */
+    /* Section FAQ */
     #faq {
       padding: 60px 0;
+    }
+    #faq .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    #faq .section-header h2 {
+      font-size: 2.8rem;
+      color: var(--accent-color);
     }
     .faq-container {
       max-width: 800px;
       margin: 0 auto;
     }
     .faq-item {
-      background-color: var(--secondary-color);
-      margin-bottom: 20px;
-      border-radius: 8px;
-      overflow: hidden;
+      border-bottom: 1px solid #333;
+      padding: 15px 0;
     }
     .faq-question {
       font-size: 1.2rem;
       color: var(--accent-color);
       cursor: pointer;
-      padding: 15px;
+      position: relative;
+      padding-right: 30px;
+    }
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      font-size: 1.5rem;
+      transition: transform 0.3s;
+    }
+    .faq-item.active .faq-question::after {
+      content: '−';
+      transform: rotate(180deg);
     }
     .faq-answer {
-      padding: 0 15px;
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.3s ease;
+      transition: max-height 0.35s ease;
+      font-size: 1rem;
+      color: var(--gray-color);
+      margin-top: 8px;
     }
     .faq-item.active .faq-answer {
       max-height: 500px;
-      padding: 15px;
     }
     
-    /* Footer */
+    /* Pied de page */
     footer {
-      background-color: var(--secondary-color);
+      background-color: #111;
+      padding: 40px 0;
       color: var(--gray-color);
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .footer-column {
+      flex: 1;
+      min-width: 250px;
+      margin: 10px 0;
+    }
+    .footer-column h4 {
+      color: var(--accent-color);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-column ul li {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+    .footer-column ul li a {
+      color: var(--gray-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-column ul li a:hover {
+      color: var(--accent-color);
+    }
+    .footer-bottom {
       text-align: center;
-      padding: 20px 0;
-      margin-top: 60px;
+      margin-top: 30px;
+      border-top: 1px solid #333;
+      padding-top: 20px;
+      font-size: 0.9rem;
     }
     
-    /* Responsive Design */
+    /* Bouton Scroll-to-Top */
+    #scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    #scroll-to-top:hover {
+      background-color: #7a1f98;
+      transform: scale(1.1);
+    }
+    
+    /* Adaptation Responsive */
     @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        align-items: center;
+      .menu-toggle {
+        display: block;
       }
-      nav ul li {
-        margin: 10px 0;
+      nav ul.desktop-menu {
+        display: none;
+      }
+      .hero {
+        height: 70vh;
+        padding: 0 10px;
+      }
+      .site-logo {
+        width: 80px;
+        height: 80px;
+        margin-right: 10px;
       }
       .hero h1 {
         font-size: 2.5rem;
@@ -205,15 +349,40 @@
       .hero p {
         font-size: 1rem;
       }
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 0.9rem;
+      }
+      nav ul.mobile-menu li a {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- En-tête avec menu hamburger pour mobile -->
   <header>
     <div class="container">
       <nav>
         <h1 class="logo">GGMarket</h1>
-        <ul>
+        <div class="menu-toggle" id="mobile-menu-toggle">☰</div>
+        <!-- Menu mobile -->
+        <ul class="mobile-menu" id="mobile-menu">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#fournisseurs">Fournisseurs</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <!-- Menu desktop -->
+        <ul class="desktop-menu">
           <li><a href="#accueil">Accueil</a></li>
           <li><a href="#fournisseurs">Fournisseurs</a></li>
           <li><a href="#faq">FAQ</a></li>
@@ -221,17 +390,22 @@
       </nav>
     </div>
   </header>
-
+  
+  <!-- Section Héro avec dégradé -->
   <section id="accueil" class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1>Bienvenue sur GGMarket</h1>
+        <div class="hero-header">
+          <img src="logo.png" alt="Logo GGMarket" class="site-logo">
+          <h1>Bienvenue sur GGMarket</h1>
+        </div>
         <p>GGMarket est une plateforme dédiée aux fournisseurs Discord de l'univers gaming. Découvrez nos produits et contactez directement les fournisseurs via Discord.</p>
-        <a href="shop.html" class="btn">Découvrir nos produits</a>
+        <a href="plans.html" class="btn">Découvrir nos plans</a>
       </div>
     </div>
   </section>
-
+  
+  <!-- Section Fournisseurs Discord -->
   <section id="fournisseurs">
     <div class="container">
       <div class="section-header">
@@ -256,7 +430,8 @@
       </div>
     </div>
   </section>
-
+  
+  <!-- Section FAQ -->
   <section id="faq">
     <div class="container">
       <div class="section-header">
@@ -265,33 +440,86 @@
       <div class="faq-container">
         <div class="faq-item">
           <div class="faq-question">Quels modes de paiement acceptez-vous ?</div>
-          <div class="faq-answer">Nous acceptons uniquement les paiements via PayPal et Bitcoin.</div>
+          <div class="faq-answer">
+            Nous acceptons uniquement les paiements via PayPal et Bitcoin.
+          </div>
         </div>
         <div class="faq-item">
           <div class="faq-question">Comment suivre ma commande ?</div>
-          <div class="faq-answer">Le suivi des commandes s'effectue directement via votre fournisseur.</div>
+          <div class="faq-answer">
+            Le suivi des commandes s'effectue directement via votre fournisseur.
+          </div>
         </div>
         <div class="faq-item">
           <div class="faq-question">Quels sont les délais de livraison ?</div>
-          <div class="faq-answer">Les délais de livraison varient selon chaque fournisseur.</div>
+          <div class="faq-answer">
+            Les délais de livraison varient selon chaque fournisseur.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Comment contacter le support ?</div>
+          <div class="faq-answer">
+            Vous pouvez nous joindre à l’adresse <a href="mailto:fodersgames@gmail.com" style="color: var(--accent-color);">fodersgames@gmail.com</a>.
+          </div>
         </div>
       </div>
     </div>
   </section>
-
+  
+  <!-- Pied de page -->
   <footer>
-    <div class="container">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h4>GGMarket</h4>
+        <p>Plateforme dédiée aux fournisseurs Discord de l'univers gaming.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <ul>
+          <li>Email: <a href="mailto:fodersgames@gmail.com">fodersgames@gmail.com</a></li>
+          <li>Paiements: PayPal &amp; Bitcoin</li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Suivez-nous</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
       <p>&copy; 2025 GGMarket. Tous droits réservés.</p>
     </div>
   </footer>
-
+  
+  <!-- Bouton Scroll-to-Top -->
+  <div id="scroll-to-top">&#8679;</div>
+  
   <script>
-    // FAQ Toggle
+    // Toggle du menu mobile
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+    
+    // Toggle de la FAQ
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
       item.addEventListener('click', () => {
         item.classList.toggle('active');
       });
+    });
+    
+    // Bouton Scroll-to-Top
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    window.addEventListener('scroll', () => {
+      scrollToTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 </body>

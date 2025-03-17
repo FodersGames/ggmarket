@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Featured Articles Slots - GGMarket</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #000000;
+      --secondary-color: #1a1a1a;
+      --accent-color: #9c27b0;
+      --text-color: #ffffff;
+      --gray-color: #888888;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+    /* Navigation */
+    nav {
+      background-color: var(--secondary-color);
+      padding: 20px 0;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+    }
+    nav a.back-btn {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+    nav a.back-btn:hover {
+      color: var(--accent-color);
+    }
+    /* Header */
+    header {
+      text-align: center;
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      padding: 40px 0;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--gray-color);
+    }
+    /* Featured Slots Section */
+    .slots-section {
+      padding: 40px 0;
+    }
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .slot-item {
+      background-color: var(--secondary-color);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      border: 2px solid #ffffff; /* Default white border */
+    }
+    .slot-item img {
+      width: 100%;
+      max-width: 150px;
+      margin: 0 auto 10px;
+      display: block;
+    }
+    .slot-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+    .slot-item p {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    .slot-item .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+    .slot-item .btn:hover {
+      background-color: #7a1f98;
+    }
+    /* Border Effects Shop Section */
+    .border-effects-shop {
+      padding: 40px 0;
+      background-color: var(--secondary-color);
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+    .border-effects-shop h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: var(--accent-color);
+      font-size: 1.8rem;
+    }
+    .border-effects-shop p {
+      text-align: center;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      color: var(--gray-color);
+    }
+    .effects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .effect-item {
+      background-color: var(--primary-color);
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid var(--gray-color);
+    }
+    .effect-item img {
+      width: 100%;
+      max-width: 150px;
+      margin: 0 auto 10px;
+      display: block;
+    }
+    .effect-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+      color: var(--accent-color);
+    }
+    .effect-item p {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    /* Preview box for border effect */
+    .preview {
+      width: 100px;
+      height: 50px;
+      margin: 0 auto 10px;
+      border: 3px solid transparent;
+    }
+    .red-effect   .preview { border-color: red; }
+    .blue-effect  .preview { border-color: blue; }
+    .green-effect .preview { border-color: green; }
+    .gold-effect  .preview { border-color: gold; }
+    .effect-item .price {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .effect-item .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
+    .effect-item .btn:hover {
+      background-color: #7a1f98;
+    }
+    /* Footer */
+    footer {
+      background-color: var(--secondary-color);
+      color: var(--gray-color);
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 0.9rem;
+      }
+    }
+    @media (max-width: 480px) {
+      nav a.back-btn {
+        font-size: 1rem;
+      }
+      header h1 {
+        font-size: 1.8rem;
+      }
+      header p {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation with Back Button -->
+  <nav>
+    <div class="container">
+      <a href="index.html" class="back-btn">Back to Home</a>
+    </div>
+  </nav>
+  
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>Featured Articles Slots</h1>
+      <p>Purchase a featured slot to showcase your product on our platform.</p>
+    </div>
+  </header>
+  
+  <!-- Featured Slots Section -->
+  <section class="slots-section">
+    <div class="container">
+      <div class="slots-grid">
+        <!-- 10 Featured Slot Items -->
+        <div class="slot-item">
+          <img src="out.png" alt="Out of Stock">
+          <h3>Featured Slot 1</h3>
+          <p>This slot is currently out of stock.</p>
+          <a href="#" class="btn">Buy Slot</a>
+        </div>
+        <div class="slot-item">
+          <img src="out.png" alt="Out of Stock">
+          <h3>Featured Slot 2</h3>
+          <p>This slot is currently out of stock.</p>
+          <a href="#" class="btn">Buy Slot</a>
+        </div>
+        <div class="slot-item">
+          <img src="out.png" alt="Out of Stock">
+          <h3>Featured Slot 3</h3>
+          <p>This slot is currently out of stock.</p>
+          <a href="#" class="btn">Buy Slot</a>
+        </div>
+        <div class="slot-item">
+          <img src="out.png" alt="Out of Stock">
+          <h3>Featured Slot 4</h3>
+          <p>This slot is currently out of stock.</p>
+          <a href="#" class="btn">Buy Slot</a>
+        </div>
+        <div class="slot-item">
+          <img src="out.png" alt="Out of Stock">
+          <h3>Featured Slot 5</h3>
+          <p>This slot is currently out of stock.</p>
+          <a href="#" class="btn">Buy Slot</a>
+        </div>
+        <div class="slot-item">
+          <img src="out.png" alt="Out of Stock">
+          <h3>Featured Slot 6</h3>
+          <p>This slot is currently out of stock.</p>
+          <a href="#" class="btn">Buy Slot</a>
+        </div>
+        <div class="slot-item">
+          <img src="out.png" alt="Out of Stock">
+          <h3>Featured Slot 7</h3>
+          <p>This slot is currently out of stock.</p>
+          <a href="#" class="btn">Buy Slot</a>
+        </div>
+        <div class="slot-item">
+          <img src="out.png" alt="Out of Stock">
+          <h3>Featured Slot 8</h3>
+          <p>This slot is currently out of stock.</p>
+          <a href="#" class="btn">Buy Slot</a>
+        </div>
+        <div class="slot-item">
+          <img src="out.png" alt="Out of Stock">
+          <h3>Featured Slot 9</h3>
+          <p>This slot is currently out of stock.</p>
+          <a href="#" class="btn">Buy Slot</a>
+        </div>
+        <div class="slot-item">
+          <img src="out.png" alt="Out of Stock">
+          <h3>Featured Slot 10</h3>
+          <p>This slot is currently out of stock.</p>
+          <a href="#" class="btn">Buy Slot</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Border Effects Shop Section -->
+  <section class="border-effects-shop">
+    <div class="container">
+      <h2>Border Effects Shop</h2>
+      <p>Enhance your featured slot with a custom border effect. Each effect costs €4.99.</p>
+      <div class="effects-grid">
+        <!-- Red Border Effect -->
+        <div class="effect-item red-effect">
+          <img src="borderbuy.png" alt="Red Border Effect">
+          <div class="preview"></div>
+          <h3>Red Border Effect</h3>
+          <p>Add a bold red border to highlight your slot.</p>
+          <div class="price">€4.99</div>
+          <a href="#" class="btn">Buy</a>
+        </div>
+        <!-- Blue Border Effect -->
+        <div class="effect-item blue-effect">
+          <img src="borderbuy.png" alt="Blue Border Effect">
+          <div class="preview"></div>
+          <h3>Blue Border Effect</h3>
+          <p>Apply a sleek blue border for a modern look.</p>
+          <div class="price">€4.99</div>
+          <a href="#" class="btn">Buy</a>
+        </div>
+        <!-- Green Border Effect -->
+        <div class="effect-item green-effect">
+          <img src="borderbuy.png" alt="Green Border Effect">
+          <div class="preview"></div>
+          <h3>Green Border Effect</h3>
+          <p>Give your slot a refreshing green border.</p>
+          <div class="price">€4.99</div>
+          <a href="#" class="btn">Buy</a>
+        </div>
+        <!-- Gold Border Effect -->
+        <div class="effect-item gold-effect">
+          <img src="borderbuy.png" alt="Gold Border Effect">
+          <div class="preview"></div>
+          <h3>Gold Border Effect</h3>
+          <p>Add a touch of luxury with a gold border.</p>
+          <div class="price">€4.99</div>
+          <a href="#" class="btn">Buy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 GGMarket. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

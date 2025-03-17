@@ -9,7 +9,7 @@
     :root {
       --primary-color: #000000;
       --secondary-color: #1a1a1a;
-      --accent-color: #9c27b0; /* Violet semi-rose */
+      --accent-color: #9c27b0; /* Semi-rose violet */
       --text-color: #ffffff;
       --gray-color: #888888;
       --free-color: #9c27b0; /* Darkest violet */
@@ -95,13 +95,16 @@
       margin-bottom: 20px;
       color: var(--text-color);
     }
+    .card .price span {
+      font-size: 1rem;
+    }
     .card ul {
       list-style: none;
-      margin: 20px 0;
+      margin: 10px 0;
       padding: 0;
     }
     .card ul li {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     .card .btn {
       display: inline-block;
@@ -133,6 +136,7 @@
       padding: 20px 0;
       margin-top: 100px;
     }
+    /* Adaptation for medium screens */
     @media (max-width: 768px) {
       .pricing-cards {
         flex-direction: column;
@@ -141,6 +145,40 @@
       .card {
         width: 100%;
         max-width: 300px;
+      }
+      header {
+        padding: 80px 0;
+      }
+      header h1 {
+        font-size: 2.5rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+    }
+    /* Adaptation for very small screens */
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 1rem;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 0.9rem;
+      }
+      .card {
+        padding: 30px;
+      }
+      .card h3 {
+        font-size: 1.5rem;
+      }
+      .card .price {
+        font-size: 2rem;
+      }
+      .card .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -155,40 +193,47 @@
   <header>
     <div class="container">
       <h1>Become a GGMarket Supplier</h1>
-      <p>Choose the plan that fits your business needs and start selling today!</p>
+      <p>Select the plan that best aligns with your business goals and start selling today!</p>
     </div>
   </header>
   
   <section class="pricing">
     <div class="container">
       <div class="pricing-cards">
+        <!-- Starter Plan -->
         <div class="card free">
           <h3>Starter</h3>
           <div class="price">$0</div>
           <ul>
-            <li>10% commission on sales</li>
-            <li>Basic platform access</li>
-            <li>Standard support</li>
+            <li>10% commission per sale</li>
+            <li>Up to 3 product listings at once</li>
+            <li>Standard customer support</li>
           </ul>
           <a href="#" class="btn">Get Started</a>
         </div>
+        <!-- Pro Plan -->
         <div class="card premium">
           <h3>Pro</h3>
-          <div class="price">$29.99</div>
+          <div class="price">$9.99<span>/mo</span></div>
           <ul>
-            <li>5% commission on sales</li>
-            <li>Advanced analytics</li>
-            <li>Priority support</li>
+            <li>5% commission per sale</li>
+            <li>Up to 10 product listings at once</li>
+            <li>Dedicated Discord channel</li>
+            <li>Priority customer support</li>
           </ul>
           <a href="#" class="btn">Choose Pro</a>
         </div>
+        <!-- Enterprise Plan -->
         <div class="card premium-plus">
           <h3>Enterprise</h3>
-          <div class="price">$99.99</div>
+          <div class="price">$19.99<span>/mo</span></div>
           <ul>
-            <li>2% commission on sales</li>
-            <li>Custom integration</li>
-            <li>Dedicated account manager</li>
+            <li>2% commission per sale</li>
+            <li>Unlimited product listings</li>
+            <li>Featured supplier profile</li>
+            <li>One highlighted product per month</li>
+            <li>Dedicated Discord channel</li>
+            <li>Premium, top-priority support</li>
           </ul>
           <a href="#" class="btn">Contact Sales</a>
         </div>
