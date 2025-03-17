@@ -69,7 +69,7 @@
     }
     .slots-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
     }
     .slot-item {
@@ -77,13 +77,28 @@
       padding: 20px;
       border-radius: 8px;
       text-align: center;
-      border: 2px solid #ffffff; /* Default white border */
+      border: 2px solid #ffffff;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .slot-item img {
-      width: 100%;
-      max-width: 150px;
+    .slot-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    /* Container circulaire pour l'image */
+    .slot-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
       margin: 0 auto 10px;
-      display: block;
+      border: 2px solid var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slot-img img {
+      width: 100%;
+      height: auto;
     }
     .slot-item h3 {
       font-size: 1.2rem;
@@ -104,6 +119,38 @@
       transition: background-color 0.3s;
     }
     .slot-item .btn:hover {
+      background-color: #7a1f98;
+    }
+    /* Slot Subscription Section */
+    .slot-subscription {
+      padding: 40px 0;
+      text-align: center;
+      background-color: var(--secondary-color);
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+    .slot-subscription h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: var(--accent-color);
+    }
+    .slot-subscription p {
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto 20px;
+      color: var(--gray-color);
+    }
+    .slot-subscription .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--accent-color);
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .slot-subscription .btn:hover {
       background-color: #7a1f98;
     }
     /* Border Effects Shop Section */
@@ -127,7 +174,7 @@
     }
     .effects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
     }
     .effect-item {
@@ -152,17 +199,42 @@
       font-size: 0.9rem;
       margin-bottom: 10px;
     }
-    /* Preview box for border effect */
+    /* Preview box for animated border effect */
     .preview {
       width: 100px;
       height: 50px;
       margin: 0 auto 10px;
       border: 3px solid transparent;
     }
-    .red-effect   .preview { border-color: red; }
-    .blue-effect  .preview { border-color: blue; }
-    .green-effect .preview { border-color: green; }
-    .gold-effect  .preview { border-color: gold; }
+    /* Neon animation keyframes */
+    @keyframes neonRed {
+      0%, 100% { box-shadow: 0 0 5px red; }
+      50% { box-shadow: 0 0 20px red; }
+    }
+    @keyframes neonBlue {
+      0%, 100% { box-shadow: 0 0 5px blue; }
+      50% { box-shadow: 0 0 20px blue; }
+    }
+    @keyframes neonGreen {
+      0%, 100% { box-shadow: 0 0 5px green; }
+      50% { box-shadow: 0 0 20px green; }
+    }
+    @keyframes neonGold {
+      0%, 100% { box-shadow: 0 0 5px gold; }
+      50% { box-shadow: 0 0 20px gold; }
+    }
+    .red-effect .preview {
+      animation: neonRed 2s linear infinite;
+    }
+    .blue-effect .preview {
+      animation: neonBlue 2s linear infinite;
+    }
+    .green-effect .preview {
+      animation: neonGreen 2s linear infinite;
+    }
+    .gold-effect .preview {
+      animation: neonGold 2s linear infinite;
+    }
     .effect-item .price {
       font-size: 1.2rem;
       margin-bottom: 10px;
@@ -190,23 +262,13 @@
       font-size: 0.9rem;
     }
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      header p {
-        font-size: 0.9rem;
-      }
+      header h1 { font-size: 2rem; }
+      header p { font-size: 0.9rem; }
     }
     @media (max-width: 480px) {
-      nav a.back-btn {
-        font-size: 1rem;
-      }
-      header h1 {
-        font-size: 1.8rem;
-      }
-      header p {
-        font-size: 0.85rem;
-      }
+      nav a.back-btn { font-size: 1rem; }
+      header h1 { font-size: 1.8rem; }
+      header p { font-size: 0.85rem; }
     }
   </style>
 </head>
@@ -222,7 +284,7 @@
   <header>
     <div class="container">
       <h1>Featured Articles Slots</h1>
-      <p>Purchase a featured slot to showcase your product on our platform.</p>
+      <p>Purchase a featured slot to prominently showcase your product.</p>
     </div>
   </header>
   
@@ -232,61 +294,81 @@
       <div class="slots-grid">
         <!-- 10 Featured Slot Items -->
         <div class="slot-item">
-          <img src="out.png" alt="Out of Stock">
+          <div class="slot-img">
+            <img src="out.png" alt="Base Image">
+          </div>
           <h3>Featured Slot 1</h3>
           <p>This slot is currently out of stock.</p>
           <a href="#" class="btn">Buy Slot</a>
         </div>
         <div class="slot-item">
-          <img src="out.png" alt="Out of Stock">
+          <div class="slot-img">
+            <img src="out.png" alt="Base Image">
+          </div>
           <h3>Featured Slot 2</h3>
           <p>This slot is currently out of stock.</p>
           <a href="#" class="btn">Buy Slot</a>
         </div>
         <div class="slot-item">
-          <img src="out.png" alt="Out of Stock">
+          <div class="slot-img">
+            <img src="out.png" alt="Base Image">
+          </div>
           <h3>Featured Slot 3</h3>
           <p>This slot is currently out of stock.</p>
           <a href="#" class="btn">Buy Slot</a>
         </div>
         <div class="slot-item">
-          <img src="out.png" alt="Out of Stock">
+          <div class="slot-img">
+            <img src="out.png" alt="Base Image">
+          </div>
           <h3>Featured Slot 4</h3>
           <p>This slot is currently out of stock.</p>
           <a href="#" class="btn">Buy Slot</a>
         </div>
         <div class="slot-item">
-          <img src="out.png" alt="Out of Stock">
+          <div class="slot-img">
+            <img src="out.png" alt="Base Image">
+          </div>
           <h3>Featured Slot 5</h3>
           <p>This slot is currently out of stock.</p>
           <a href="#" class="btn">Buy Slot</a>
         </div>
         <div class="slot-item">
-          <img src="out.png" alt="Out of Stock">
+          <div class="slot-img">
+            <img src="out.png" alt="Base Image">
+          </div>
           <h3>Featured Slot 6</h3>
           <p>This slot is currently out of stock.</p>
           <a href="#" class="btn">Buy Slot</a>
         </div>
         <div class="slot-item">
-          <img src="out.png" alt="Out of Stock">
+          <div class="slot-img">
+            <img src="out.png" alt="Base Image">
+          </div>
           <h3>Featured Slot 7</h3>
           <p>This slot is currently out of stock.</p>
           <a href="#" class="btn">Buy Slot</a>
         </div>
         <div class="slot-item">
-          <img src="out.png" alt="Out of Stock">
+          <div class="slot-img">
+            <img src="out.png" alt="Base Image">
+          </div>
           <h3>Featured Slot 8</h3>
           <p>This slot is currently out of stock.</p>
           <a href="#" class="btn">Buy Slot</a>
         </div>
         <div class="slot-item">
-          <img src="out.png" alt="Out of Stock">
+          <div class="slot-img">
+            <img src="out.png" alt="Base Image">
+          </div>
           <h3>Featured Slot 9</h3>
           <p>This slot is currently out of stock.</p>
           <a href="#" class="btn">Buy Slot</a>
         </div>
         <div class="slot-item">
-          <img src="out.png" alt="Out of Stock">
+          <div class="slot-img">
+            <img src="out.png" alt="Base Image">
+          </div>
           <h3>Featured Slot 10</h3>
           <p>This slot is currently out of stock.</p>
           <a href="#" class="btn">Buy Slot</a>
@@ -295,45 +377,54 @@
     </div>
   </section>
   
+  <!-- Slot Subscription Section -->
+  <section class="slot-subscription">
+    <div class="container">
+      <h2>Featured Slot Subscription</h2>
+      <p>Secure your featured slot to showcase your product for only €9.99 per month.</p>
+      <a href="#" class="btn">Subscribe Now</a>
+    </div>
+  </section>
+  
   <!-- Border Effects Shop Section -->
   <section class="border-effects-shop">
     <div class="container">
       <h2>Border Effects Shop</h2>
-      <p>Enhance your featured slot with a custom border effect. Each effect costs €4.99.</p>
+      <p>Enhance your featured slot with an animated border effect. Each effect is available for €4.99.</p>
       <div class="effects-grid">
-        <!-- Red Border Effect -->
+        <!-- Red Neon Border Effect -->
         <div class="effect-item red-effect">
-          <img src="borderbuy.png" alt="Red Border Effect">
+          <img src="borderbuy.png" alt="Red Neon Effect">
           <div class="preview"></div>
-          <h3>Red Border Effect</h3>
-          <p>Add a bold red border to highlight your slot.</p>
+          <h3>Red Neon Effect</h3>
+          <p>Dynamic red neon glow to make your slot pop.</p>
           <div class="price">€4.99</div>
           <a href="#" class="btn">Buy</a>
         </div>
-        <!-- Blue Border Effect -->
+        <!-- Blue Neon Border Effect -->
         <div class="effect-item blue-effect">
-          <img src="borderbuy.png" alt="Blue Border Effect">
+          <img src="borderbuy.png" alt="Blue Neon Effect">
           <div class="preview"></div>
-          <h3>Blue Border Effect</h3>
-          <p>Apply a sleek blue border for a modern look.</p>
+          <h3>Blue Neon Effect</h3>
+          <p>Sleek blue neon glow for a modern look.</p>
           <div class="price">€4.99</div>
           <a href="#" class="btn">Buy</a>
         </div>
-        <!-- Green Border Effect -->
+        <!-- Green Neon Border Effect -->
         <div class="effect-item green-effect">
-          <img src="borderbuy.png" alt="Green Border Effect">
+          <img src="borderbuy.png" alt="Green Neon Effect">
           <div class="preview"></div>
-          <h3>Green Border Effect</h3>
-          <p>Give your slot a refreshing green border.</p>
+          <h3>Green Neon Effect</h3>
+          <p>Fresh green neon glow to highlight your slot.</p>
           <div class="price">€4.99</div>
           <a href="#" class="btn">Buy</a>
         </div>
-        <!-- Gold Border Effect -->
+        <!-- Gold Neon Border Effect -->
         <div class="effect-item gold-effect">
-          <img src="borderbuy.png" alt="Gold Border Effect">
+          <img src="borderbuy.png" alt="Gold Neon Effect">
           <div class="preview"></div>
-          <h3>Gold Border Effect</h3>
-          <p>Add a touch of luxury with a gold border.</p>
+          <h3>Gold Neon Effect</h3>
+          <p>Luxurious gold neon glow to elevate your slot.</p>
           <div class="price">€4.99</div>
           <a href="#" class="btn">Buy</a>
         </div>
